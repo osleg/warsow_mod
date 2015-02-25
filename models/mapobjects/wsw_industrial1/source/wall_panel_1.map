@@ -1,0 +1,14 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 60 8 64 ) ( 60 0 64 ) ( -68 8 64 ) exwsw/eX_surf_metallightgrey 8 0 0 0.5 0.5 0 0 0
+( 64 4 32 ) ( -64 4 32 ) ( 64 4 -32 ) exwsw/eX_wall_b01 256 256 0 0.25 0.25 0 0 0
+( 64 8 32 ) ( 64 8 -32 ) ( 64 0 32 ) exwsw/eX_surf_metallightgrey 0 0 0 0.5 0.5 0 0 0
+( -60 0 -64 ) ( 68 0 -64 ) ( -60 8 -64 ) exwsw/eX_surf_metallightgrey 504 0 0 0.5 0.5 0 0 0
+( -64 -4 -32 ) ( -64 -4 32 ) ( 64 -4 -32 ) common/caulk 0 0 0 0.5 0.5 0 0 0
+( -64 0 -32 ) ( -64 8 -32 ) ( -64 0 32 ) exwsw/eX_surf_metallightgrey 0 0 0 0.5 0.5 0 0 0
+}
+}

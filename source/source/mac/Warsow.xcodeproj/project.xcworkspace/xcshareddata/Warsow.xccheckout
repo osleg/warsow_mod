@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6B9F431B-7615-4D73-BE67-936BCB13D736</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Warsow</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B9CA47CB-EEBF-4A7B-B171-F99F1E1C082F</key>
+		<string>ssh://gitlab.picmip.org/warsow.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>sdk/source/source/mac/Warsow.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B9CA47CB-EEBF-4A7B-B171-F99F1E1C082F</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://gitlab.picmip.org/warsow.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B9CA47CB-EEBF-4A7B-B171-F99F1E1C082F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B9CA47CB-EEBF-4A7B-B171-F99F1E1C082F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>warsow</string>
+		</dict>
+	</array>
+</dict>
+</plist>

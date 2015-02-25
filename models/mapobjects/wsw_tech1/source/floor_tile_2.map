@@ -1,0 +1,14 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 16 32 2 ) ( 16 -32 2 ) ( -32 32 2 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+( 16 32 8 ) ( -32 32 8 ) ( 16 32 -8 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+( 32 32 8 ) ( 32 32 -8 ) ( 32 -32 8 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+( -32 -32 -2 ) ( 16 -32 -2 ) ( -32 32 -2 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+( -32 -32 -8 ) ( -32 -32 8 ) ( 16 -32 -8 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+( -32 -32 -8 ) ( -32 32 -8 ) ( -32 -32 8 ) blx_wtest3/blx_wt3_floor5 32 96 0 1 1 0 0 0
+}
+}

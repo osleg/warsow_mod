@@ -1,0 +1,19 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+"target" "target_position2"
+"message" "skyroads"
+"spawnflags" "4"
+// brush 0
+{
+( 72 -216 -12 ) ( 72 -248 -12 ) ( -96 -216 -12 ) exwsw/eXmetalFloor02 -0.5 190.5 0 0.5 0.5 0 0 0
+( -24 -32 -16 ) ( 0 96 -16 ) ( -24 96 -16 ) common/caulk 63.5 126.5 0 0.5 0.5 0 0 0
+( 8 -32 -60 ) ( 0 -24 -60 ) ( 8 -32 68 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+( -72 -96 68 ) ( -64 -88 -60 ) ( -72 -96 -60 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+( -80 -16 68 ) ( -56 -16 -60 ) ( -80 -16 -60 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+( -48 72 -60 ) ( -40 64 -60 ) ( -48 72 68 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+( -80 16 -60 ) ( -56 16 -60 ) ( -80 16 68 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+( -72 -48 -56 ) ( -64 -40 -56 ) ( -72 -48 72 ) exwsw/matte_eX_surf_metaldarkgrey 191.5 70.5 0 0.1000000015 0.1000000015 0 0 0
+}
+}

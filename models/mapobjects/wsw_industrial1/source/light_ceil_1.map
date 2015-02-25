@@ -1,0 +1,50 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 144 4 112 ) ( 144 -4 112 ) ( -880 4 112 ) common/caulk 96 112 0 0.5 0.5 0 0 0
+( 1024 4 112 ) ( 0 4 112 ) ( 1024 4 96 ) exwsw/matte_eX_surf_metallightgrey 0 104 0 0.5 0.5 0 0 0
+( 132 4 108 ) ( 132 4 92 ) ( 132 -4 108 ) exwsw/matte_eX_surf_metallightgrey 16 96 0 0.5 0.5 0 0 0
+( 0 -4 80 ) ( 1024 -4 80 ) ( 0 4 80 ) common/caulk 0 112 0 0.5 0.5 0 0 0
+( 0 -4 96 ) ( 0 -4 112 ) ( 1024 -4 96 ) exwsw/matte_eX_surf_metallightgrey 0 104 0 0.5 0.5 0 0 0
+( 124 -4 96 ) ( 124 4 96 ) ( 124 -4 112 ) exwsw/matte_eX_surf_metallightgrey 16 104 0 0.5 0.5 0 0 0
+}
+// brush 1
+{
+( -112 4 112 ) ( -112 -4 112 ) ( -1136 4 112 ) common/caulk 96 112 0 0.5 0.5 0 0 0
+( 768 4 112 ) ( -256 4 112 ) ( 768 4 96 ) exwsw/matte_eX_surf_metallightgrey 0 104 0 0.5 0.5 0 0 0
+( -124 4 108 ) ( -124 4 92 ) ( -124 -4 108 ) exwsw/matte_eX_surf_metallightgrey 16 96 0 0.5 0.5 0 0 0
+( -256 -4 80 ) ( 768 -4 80 ) ( -256 4 80 ) common/caulk 0 112 0 0.5 0.5 0 0 0
+( -256 -4 96 ) ( -256 -4 112 ) ( 768 -4 96 ) exwsw/matte_eX_surf_metallightgrey 0 104 0 0.5 0.5 0 0 0
+( -132 -4 96 ) ( -132 4 96 ) ( -132 -4 112 ) exwsw/matte_eX_surf_metallightgrey 16 104 0 0.5 0.5 0 0 0
+}
+// brush 2
+{
+( -136 12 76 ) ( 136 -12 76 ) ( -136 -12 76 ) HazelH/base_dblue2_pong 0 120 0 0.5 0.5 0 0 0
+( 136 8 72 ) ( 136 12 76 ) ( -136 12 76 ) exwsw/matte_eX_surf_metalbrown 0 88 0 0.5 0.5 0 0 0
+( 136 -8 72 ) ( 136 -12 76 ) ( 136 8 72 ) exwsw/matte_eX_surf_metalbrown 8 88 0 0.5 0.5 0 0 0
+( 136 8 72 ) ( -136 -8 72 ) ( 136 -8 72 ) blx/blx_ultrabright 16 24 0 0.5 0.5 0 0 0
+( 136 -8 72 ) ( -136 -12 76 ) ( 136 -12 76 ) exwsw/matte_eX_surf_metalbrown 0 88 0 0.5 0.5 0 0 0
+( -136 12 76 ) ( -136 -12 76 ) ( -136 8 72 ) exwsw/matte_eX_surf_metalbrown 8 88 0 0.5 0.5 0 0 0
+}
+// brush 3
+{
+( 132 16 80 ) ( 132 -16 80 ) ( -132 16 80 ) exwsw/matte_eX_surf_metaldarkgrey 0 112 0 0.5 0.5 0 0 0
+( 132 16 80 ) ( -132 16 80 ) ( 132 16 76 ) exwsw/matte_eX_surf_metaldarkgrey 0 96 0 0.5 0.5 0 0 0
+( 144 16 80 ) ( 144 16 76 ) ( 144 -16 80 ) exwsw/matte_eX_surf_metaldarkgrey 16 96 0 0.5 0.5 0 0 0
+( -132 -16 76 ) ( 132 -16 76 ) ( -132 16 76 ) exwsw/matte_eX_surf_metaldarkgrey 0 112 0 0.5 0.5 0 0 0
+( -132 -16 76 ) ( -132 -16 80 ) ( 132 -16 76 ) exwsw/matte_eX_surf_metaldarkgrey 0 96 0 0.5 0.5 0 0 0
+( -144 -16 76 ) ( -144 16 76 ) ( -144 -16 80 ) exwsw/matte_eX_surf_metaldarkgrey 16 96 0 0.5 0.5 0 0 0
+}
+// brush 4
+{
+( 144 48 72 ) ( 144 0 72 ) ( -128 48 72 ) common/caulk 0 0 0 0.5 0.5 134217728 0 0
+( 144 48 72 ) ( -128 48 72 ) ( 144 48 -80 ) common/caulk 0 0 0 0.5 0.5 134217728 0 0
+( 256 48 72 ) ( 256 48 -80 ) ( 256 0 72 ) common/caulk 0 0 0 0.5 0.5 134217728 0 0
+( -128 -8 -192 ) ( 144 -8 -192 ) ( -128 40 -192 ) common/caulk 0 112 0 0.5 0.5 134217728 0 0
+( -128 0 -80 ) ( -128 0 72 ) ( 144 0 -80 ) wsw_flareshalos/glow_halo_white_flat 255.9999847412 69.8181762695 0 1 1.03125 134217728 0 0
+( -256 0 -80 ) ( -256 48 -80 ) ( -256 0 72 ) common/caulk 0 0 0 0.5 0.5 134217728 0 0
+}
+}

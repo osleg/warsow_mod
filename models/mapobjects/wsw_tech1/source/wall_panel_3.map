@@ -1,0 +1,14 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 64 6 192 ) ( 64 -2 192 ) ( -32 6 192 ) blx_wtest3/blx_wt3_surfmetal2 230 2 0 0.5 0.5 0 0 0
+( 64 2 36 ) ( -32 2 36 ) ( 64 2 32 ) common/caulk 102 62 0 0.5 0.5 0 0 0
+( 32 6 40 ) ( 32 6 36 ) ( 32 -2 40 ) blx_wtest3/blx_wt3_surfmetal2 250 70 0 0.5 0.5 0 0 0
+( -20 -2 -64 ) ( 76 -2 -64 ) ( -20 6 -64 ) blx_wtest3/blx_wt3_surfmetal2 78 2 0 0.5 0.5 0 0 0
+( -32 -2 32 ) ( -32 -2 36 ) ( 64 -2 32 ) blx_wtest3/blx_wt3_wall2 64 384 0 0.5 0.5 0 0 0
+( -32 -2 32 ) ( -32 6 32 ) ( -32 -2 36 ) blx_wtest3/blx_wt3_surfmetal2 250 62 0 0.5 0.5 0 0 0
+}
+}

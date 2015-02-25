@@ -1,0 +1,14 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 32 32 0 ) ( 32 -96 0 ) ( -160 32 0 ) wsw_city1/tech_concrete_tiles 193 449 0 0.5 0.5 0 0 0
+( -160 -96 -8 ) ( 32 -96 -8 ) ( -160 32 -8 ) common/caulk 65 65 0 0.5 0.5 0 0 0
+( -32 112 64 ) ( -32 48 -64 ) ( -32 112 -64 ) wsw_city1/tech_concrete1 65 1 0 0.5 0.5 0 0 0
+( 32 112 -64 ) ( 32 40 -64 ) ( 32 112 64 ) wsw_city1/tech_concrete1 65 1 0 0.5 0.5 0 0 0
+( -96 32 -64 ) ( 8 32 -64 ) ( -96 32 64 ) wsw_city1/tech_concrete1 193 1 0 0.5 0.5 0 0 0
+( -72 -32 64 ) ( 0 -32 -64 ) ( -72 -32 -64 ) wsw_city1/tech_concrete1 449 1 0 0.5 0.5 0 0 0
+}
+}
