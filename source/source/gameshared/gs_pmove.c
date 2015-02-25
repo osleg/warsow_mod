@@ -1121,7 +1121,7 @@ static void PM_CheckDash( void )
 
         VectorNormalizeFast( dashdir );
 
-        actual_velocity = VectorNormalize( pml.velocity );
+        actual_velocity = VectorNormalize( pml.velocity ); // Osleg: Instead of VectorNormalize2D
         if ( actual_velocity <= pml.dashPlayerSpeed )
             VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
         else
@@ -1223,7 +1223,7 @@ static void PM_CheckWallJump( void )
                 float oldupvelocity = pml.velocity[2];
                 pml.velocity[2] = 0.0;
 
-                hspeed = VectorNormalize( pml.velocity );
+                hspeed = VectorNormalize( pml.velocity ); // Osleg: instead of VectorNormalize2D
 
                 // if stunned almost do nothing
                 if ( pm->playerState->pmove.stats[PM_STAT_STUN] > 0 )
