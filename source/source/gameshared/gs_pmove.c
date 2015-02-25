@@ -1107,14 +1107,14 @@ static void PM_CheckDash( void )
         pm->groundentity = -1;
 
         if ( pml.velocity[2] <= 0.0f ) // If player doesn't move in any direction
-            upspeed = pm_dashupspeed * 1000; // here is UP speed YAY!
+            upspeed = pm_dashupspeed;
         else
-            upspeed = pm_dashupspeed + pml.velocity[2] * 1000; // if we move we just apply regular + Z velocity
+            upspeed = pm_dashupspeed + pml.velocity[2];
 
         // ch : we should do explicit forwardPush here, and ignore sidePush ?
         VectorMA( vec3_origin, pml.forwardPush, pml.forward, dashdir );
-        /*VectorMA( dashdir, pml.sidePush, pml.right, dashdir );*/
-        /*dashdir[2] = 0.0;*/ // Flattering Z axis here
+        VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
+        /*dashdir[2] = 0.0;*/
 
         if ( VectorLength( dashdir ) < 0.01f ) // if not moving, dash like a "forward dash"
             VectorCopy( pml.flatforward, dashdir );
