@@ -323,7 +323,9 @@ static void G_KnockBackPush( edict_t *targ, edict_t *attacker, const vec3_t base
 *
 * dflags        these flags are used to control how T_Damage works
 */
-void G_Damage( edict_t *targ, edict_t *inflictor, edict_t *attacker, const vec3_t pushdir, const vec3_t dmgdir, const vec3_t point, float damage, float knockback, float stun, int dflags, int mod )
+void G_Damage( edict_t *targ, edict_t *inflictor, edict_t *attacker,
+        const vec3_t pushdir, const vec3_t dmgdir, const vec3_t point,
+        float damage, float knockback, float stun, int dflags, int mod )
 {
     gclient_t *client;
     float take;

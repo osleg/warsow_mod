@@ -35,23 +35,23 @@ extern "C" {
 
 enum
 {
-	PITCH = 0,		// up / down
-	YAW = 1,		// left / right
-	ROLL = 2		// fall over
+    PITCH = 0,      // up / down
+    YAW = 1,        // left / right
+    ROLL = 2        // fall over
 };
 
 enum
 {
-	FORWARD = 0,
-	RIGHT = 1,
-	UP = 2
+    FORWARD = 0,
+    RIGHT = 1,
+    UP = 2
 };
 
 enum
 {
-	AXIS_FORWARD = 0,
-	AXIS_RIGHT = 3,
-	AXIS_UP = 6
+    AXIS_FORWARD = 0,
+    AXIS_RIGHT = 3,
+    AXIS_UP = 6
 };
 
 typedef float vec_t;
@@ -69,18 +69,18 @@ typedef vec_t dualquat_t[8];
 typedef qbyte byte_vec4_t[4];
 
 // 0-2 are axial planes
-#define	PLANE_X		0
-#define	PLANE_Y		1
-#define	PLANE_Z		2
-#define	PLANE_NONAXIAL	3
+#define PLANE_X     0
+#define PLANE_Y     1
+#define PLANE_Z     2
+#define PLANE_NONAXIAL  3
 
 // cplane_t structure
 typedef struct cplane_s
 {
-	vec3_t normal;
-	float dist;
-	short type;					// for fast side tests
-	short signbits;				// signx + (signy<<1) + (signz<<1)
+    vec3_t normal;
+    float dist;
+    short type;                 // for fast side tests
+    short signbits;             // signx + (signy<<1) + (signz<<1)
 } cplane_t;
 
 extern vec3_t vec3_origin;
@@ -104,16 +104,16 @@ extern vec4_t colorOrange;
 
 extern vec4_t color_table[MAX_S_COLORS];
 
-#define	nanmask ( 255<<23 )
+#define nanmask ( 255<<23 )
 
-#define	IS_NAN( x ) ( ( ( *(int *)&x )&nanmask ) == nanmask )
+#define IS_NAN( x ) ( ( ( *(int *)&x )&nanmask ) == nanmask )
 
 #ifndef M_PI
-#define M_PI	   3.14159265358979323846   // matches value in gcc v2 math.h
+#define M_PI       3.14159265358979323846   // matches value in gcc v2 math.h
 #endif
 
 #ifndef M_TWOPI
-#define M_TWOPI	   6.28318530717958647692
+#define M_TWOPI    6.28318530717958647692
 #endif
 
 #define DEG2RAD( a ) ( a * M_PI ) / 180.0F
@@ -139,17 +139,17 @@ extern vec4_t color_table[MAX_S_COLORS];
 #define clamp_low( a, low ) ( ( a ) = ( a ) < ( low ) ? ( low ) : ( a ) )
 #define clamp_high( a, high ) ( ( a ) = ( a ) > ( high ) ? ( high ) : ( a ) )
 
-#define random()	( ( rand() & 0x7fff ) / ( (float)0x7fff ) )  // 0..1
-#define brandom( a, b )	   ( ( a )+random()*( ( b )-( a ) ) )                // a..b
-#define crandom()	brandom( -1, 1 )                           // -1..1
+#define random()    ( ( rand() & 0x7fff ) / ( (float)0x7fff ) )  // 0..1
+#define brandom( a, b )    ( ( a )+random()*( ( b )-( a ) ) )                // a..b
+#define crandom()   brandom( -1, 1 )                           // -1..1
 
-int	Q_rand( int *seed );
+int Q_rand( int *seed );
 #define Q_random( seed )      ( ( Q_rand( seed ) & 0x7fff ) / ( (float)0x7fff ) )    // 0..1
-#define Q_brandom( seed, a, b )	( ( a )+Q_random( seed )*( ( b )-( a ) ) )                      // a..b
+#define Q_brandom( seed, a, b ) ( ( a )+Q_random( seed )*( ( b )-( a ) ) )                      // a..b
 #define Q_crandom( seed )     Q_brandom( seed, -1, 1 )
 
-float	Q_RSqrt( float number );
-int	Q_log2( int val );
+float   Q_RSqrt( float number );
+int Q_log2( int val );
 
 int Q_bitcount( int v );
 
@@ -157,45 +157,45 @@ int Q_bitcount( int v );
 
 #define SQRTFAST( x ) ( ( x ) * Q_RSqrt( x ) ) // jal : //The expression a * rsqrt(b) is intended as a higher performance alternative to a / sqrt(b). The two expressions are comparably accurate, but do not compute exactly the same value in every case. For example, a * rsqrt(a*a + b*b) can be just slightly greater than 1, in rare cases.
 
-#define DotProduct( x, y )	   ( ( x )[0]*( y )[0]+( x )[1]*( y )[1]+( x )[2]*( y )[2] )
+#define DotProduct( x, y )     ( ( x )[0]*( y )[0]+( x )[1]*( y )[1]+( x )[2]*( y )[2] )
 #define CrossProduct( v1, v2, cross ) ( ( cross )[0] = ( v1 )[1]*( v2 )[2]-( v1 )[2]*( v2 )[1], ( cross )[1] = ( v1 )[2]*( v2 )[0]-( v1 )[0]*( v2 )[2], ( cross )[2] = ( v1 )[0]*( v2 )[1]-( v1 )[1]*( v2 )[0] )
 
 #define PlaneDiff( point, plane ) ( ( ( plane )->type < 3 ? ( point )[( plane )->type] : DotProduct( ( point ), ( plane )->normal ) ) - ( plane )->dist )
 
 #define VectorSubtract( a, b, c )   ( ( c )[0] = ( a )[0]-( b )[0], ( c )[1] = ( a )[1]-( b )[1], ( c )[2] = ( a )[2]-( b )[2] )
-#define VectorAdd( a, b, c )	    ( ( c )[0] = ( a )[0]+( b )[0], ( c )[1] = ( a )[1]+( b )[1], ( c )[2] = ( a )[2]+( b )[2] )
-#define VectorCopy( a, b )	   ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1], ( b )[2] = ( a )[2] )
-#define VectorClear( a )	  ( ( a )[0] = ( a )[1] = ( a )[2] = 0 )
-#define VectorNegate( a, b )	   ( ( b )[0] = -( a )[0], ( b )[1] = -( a )[1], ( b )[2] = -( a )[2] )
-#define VectorSet( v, x, y, z )	  ( ( v )[0] = ( x ), ( v )[1] = ( y ), ( v )[2] = ( z ) )
-#define VectorAvg( a, b, c )	    ( ( c )[0] = ( ( a )[0]+( b )[0] )*0.5f, ( c )[1] = ( ( a )[1]+( b )[1] )*0.5f, ( c )[2] = ( ( a )[2]+( b )[2] )*0.5f )
-#define VectorMA( a, b, c, d )	     ( ( d )[0] = ( a )[0]+( b )*( c )[0], ( d )[1] = ( a )[1]+( b )*( c )[1], ( d )[2] = ( a )[2]+( b )*( c )[2] )
-#define VectorCompare( v1, v2 )	   ( ( v1 )[0] == ( v2 )[0] && ( v1 )[1] == ( v2 )[1] && ( v1 )[2] == ( v2 )[2] )
-#define VectorLengthSquared( v )	( DotProduct( ( v ), ( v ) ) )
-#define VectorLength( v )	  ( sqrt( VectorLengthSquared( v ) ) )
-#define VectorInverse( v )	  ( ( v )[0] = -( v )[0], ( v )[1] = -( v )[1], ( v )[2] = -( v )[2] )
+#define VectorAdd( a, b, c )        ( ( c )[0] = ( a )[0]+( b )[0], ( c )[1] = ( a )[1]+( b )[1], ( c )[2] = ( a )[2]+( b )[2] )
+#define VectorCopy( a, b )     ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1], ( b )[2] = ( a )[2] )
+#define VectorClear( a )      ( ( a )[0] = ( a )[1] = ( a )[2] = 0 )
+#define VectorNegate( a, b )       ( ( b )[0] = -( a )[0], ( b )[1] = -( a )[1], ( b )[2] = -( a )[2] )
+#define VectorSet( v, x, y, z )   ( ( v )[0] = ( x ), ( v )[1] = ( y ), ( v )[2] = ( z ) )
+#define VectorAvg( a, b, c )        ( ( c )[0] = ( ( a )[0]+( b )[0] )*0.5f, ( c )[1] = ( ( a )[1]+( b )[1] )*0.5f, ( c )[2] = ( ( a )[2]+( b )[2] )*0.5f )
+#define VectorMA( a, b, c, d )       ( ( d )[0] = ( a )[0]+( b )*( c )[0], ( d )[1] = ( a )[1]+( b )*( c )[1], ( d )[2] = ( a )[2]+( b )*( c )[2] )
+#define VectorCompare( v1, v2 )    ( ( v1 )[0] == ( v2 )[0] && ( v1 )[1] == ( v2 )[1] && ( v1 )[2] == ( v2 )[2] )
+#define VectorLengthSquared( v )    ( DotProduct( ( v ), ( v ) ) )
+#define VectorLength( v )     ( sqrt( VectorLengthSquared( v ) ) )
+#define VectorInverse( v )    ( ( v )[0] = -( v )[0], ( v )[1] = -( v )[1], ( v )[2] = -( v )[2] )
 #define VectorLerp( a, c, b, v )     ( ( v )[0] = ( a )[0]+( c )*( ( b )[0]-( a )[0] ), ( v )[1] = ( a )[1]+( c )*( ( b )[1]-( a )[1] ), ( v )[2] = ( a )[2]+( c )*( ( b )[2]-( a )[2] ) )
 #define VectorScale( in, scale, out ) ( ( out )[0] = ( in )[0]*( scale ), ( out )[1] = ( in )[1]*( scale ), ( out )[2] = ( in )[2]*( scale ) )
 
 #define DistanceSquared( v1, v2 ) ( ( ( v1 )[0]-( v2 )[0] )*( ( v1 )[0]-( v2 )[0] )+( ( v1 )[1]-( v2 )[1] )*( ( v1 )[1]-( v2 )[1] )+( ( v1 )[2]-( v2 )[2] )*( ( v1 )[2]-( v2 )[2] ) )
 #define Distance( v1, v2 ) ( sqrt( DistanceSquared( v1, v2 ) ) )
 
-#define VectorLengthFast( v )	  ( SQRTFAST( DotProduct( ( v ), ( v ) ) ) )  // jal :  //The expression a * rsqrt(b) is intended as a higher performance alternative to a / sqrt(b). The two expressions are comparably accurate, but do not compute exactly the same value in every case. For example, a * rsqrt(a*a + b*b) can be just slightly greater than 1, in rare cases.
-#define DistanceFast( v1, v2 )	   ( SQRTFAST( DistanceSquared( v1, v2 ) ) )  // jal :  //The expression a * rsqrt(b) is intended as a higher performance alternative to a / sqrt(b). The two expressions are comparably accurate, but do not compute exactly the same value in every case. For example, a * rsqrt(a*a + b*b) can be just slightly greater than 1, in rare cases.
+#define VectorLengthFast( v )     ( SQRTFAST( DotProduct( ( v ), ( v ) ) ) )  // jal :  //The expression a * rsqrt(b) is intended as a higher performance alternative to a / sqrt(b). The two expressions are comparably accurate, but do not compute exactly the same value in every case. For example, a * rsqrt(a*a + b*b) can be just slightly greater than 1, in rare cases.
+#define DistanceFast( v1, v2 )     ( SQRTFAST( DistanceSquared( v1, v2 ) ) )  // jal :  //The expression a * rsqrt(b) is intended as a higher performance alternative to a / sqrt(b). The two expressions are comparably accurate, but do not compute exactly the same value in every case. For example, a * rsqrt(a*a + b*b) can be just slightly greater than 1, in rare cases.
 
-#define Vector2Set( v, x, y )	  ( ( v )[0] = ( x ), ( v )[1] = ( y ) )
-#define Vector2Copy( a, b )	   ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1] )
-#define Vector2Avg( a, b, c )	    ( ( c )[0] = ( ( ( a[0] )+( b[0] ) )*0.5f ), ( c )[1] = ( ( ( a[1] )+( b[1] ) )*0.5f ) )
+#define Vector2Set( v, x, y )     ( ( v )[0] = ( x ), ( v )[1] = ( y ) )
+#define Vector2Copy( a, b )    ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1] )
+#define Vector2Avg( a, b, c )       ( ( c )[0] = ( ( ( a[0] )+( b[0] ) )*0.5f ), ( c )[1] = ( ( ( a[1] )+( b[1] ) )*0.5f ) )
 
 #define Vector4Set( v, a, b, c, d )   ( ( v )[0] = ( a ), ( v )[1] = ( b ), ( v )[2] = ( c ), ( v )[3] = ( d ) )
-#define Vector4Clear( a )	  ( ( a )[0] = ( a )[1] = ( a )[2] = ( a )[3] = 0 )
-#define Vector4Copy( a, b )	   ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1], ( b )[2] = ( a )[2], ( b )[3] = ( a )[3] )
-#define Vector4Scale( in, scale, out )	    ( ( out )[0] = ( in )[0]*scale, ( out )[1] = ( in )[1]*scale, ( out )[2] = ( in )[2]*scale, ( out )[3] = ( in )[3]*scale )
-#define Vector4Add( a, b, c )	    ( ( c )[0] = ( ( ( (a)[0] )+( (b)[0] ) ) ), ( c )[1] = ( ( ( (a)[1] )+( (b)[1] ) ) ), ( c )[2] = ( ( ( (a)[2] )+( (b)[2] ) ) ), ( c )[3] = ( ( ( (a)[3] )+( (b)[3] ) ) ) )
-#define Vector4Avg( a, b, c )	    ( ( c )[0] = ( ( ( (a)[0] )+( (b)[0] ) )*0.5f ), ( c )[1] = ( ( ( (a)[1] )+( (b)[1] ) )*0.5f ), ( c )[2] = ( ( ( (a)[2] )+ (b)[2] ) )*0.5f ), ( c )[3] = ( ( ( (a)[3] )+( (b)[3] ) )*0.5f ) )
-#define Vector4Negate( a, b )	   ( ( b )[0] = -( a )[0], ( b )[1] = -( a )[1], ( b )[2] = -( a )[2], ( b )[3] = -( a )[3] )
-#define Vector4Inverse( v )			( ( v )[0] = -( v )[0], ( v )[1] = -( v )[1], ( v )[2] = -( v )[2], ( v )[3] = -( v )[3] )
-#define DotProduct4( x, y )	   ( ( x )[0]*( y )[0]+( x )[1]*( y )[1]+( x )[2]*( y )[2]+( x )[3]*( y )[3] )
+#define Vector4Clear( a )     ( ( a )[0] = ( a )[1] = ( a )[2] = ( a )[3] = 0 )
+#define Vector4Copy( a, b )    ( ( b )[0] = ( a )[0], ( b )[1] = ( a )[1], ( b )[2] = ( a )[2], ( b )[3] = ( a )[3] )
+#define Vector4Scale( in, scale, out )      ( ( out )[0] = ( in )[0]*scale, ( out )[1] = ( in )[1]*scale, ( out )[2] = ( in )[2]*scale, ( out )[3] = ( in )[3]*scale )
+#define Vector4Add( a, b, c )       ( ( c )[0] = ( ( ( (a)[0] )+( (b)[0] ) ) ), ( c )[1] = ( ( ( (a)[1] )+( (b)[1] ) ) ), ( c )[2] = ( ( ( (a)[2] )+( (b)[2] ) ) ), ( c )[3] = ( ( ( (a)[3] )+( (b)[3] ) ) ) )
+#define Vector4Avg( a, b, c )       ( ( c )[0] = ( ( ( (a)[0] )+( (b)[0] ) )*0.5f ), ( c )[1] = ( ( ( (a)[1] )+( (b)[1] ) )*0.5f ), ( c )[2] = ( ( ( (a)[2] )+ (b)[2] ) )*0.5f ), ( c )[3] = ( ( ( (a)[3] )+( (b)[3] ) )*0.5f ) )
+#define Vector4Negate( a, b )      ( ( b )[0] = -( a )[0], ( b )[1] = -( a )[1], ( b )[2] = -( a )[2], ( b )[3] = -( a )[3] )
+#define Vector4Inverse( v )         ( ( v )[0] = -( v )[0], ( v )[1] = -( v )[1], ( v )[2] = -( v )[2], ( v )[3] = -( v )[3] )
+#define DotProduct4( x, y )    ( ( x )[0]*( y )[0]+( x )[1]*( y )[1]+( x )[2]*( y )[2]+( x )[3]*( y )[3] )
 
 vec_t VectorNormalize( vec3_t v );       // returns vector length
 vec_t VectorNormalize2( const vec3_t v, vec3_t out );
@@ -246,7 +246,7 @@ vec_t ColorNormalize( const vec_t *in, vec_t *out );
 float CalcFov( float fov_x, float width, float height );
 void AdjustFov( float *fov_x, float *fov_y, float width, float height, qboolean lock_x );
 
-#define Q_sign( x )	(( x ) < 0 ? -1 : (( x ) > 0 ? 1 : 0))
+#define Q_sign( x ) (( x ) < 0 ? -1 : (( x ) > 0 ? 1 : 0))
 #define Q_rint( x ) ( ( x ) < 0 ? ( (int)( ( x )-0.5f ) ) : ( (int)( ( x )+0.5f ) ) )
 
 int SignbitsForPlane( const cplane_t *out );
@@ -258,21 +258,21 @@ qboolean ComparePlanes( const vec3_t p1normal, vec_t p1dist, const vec3_t p2norm
 void SnapVector( vec3_t normal );
 void SnapPlane( vec3_t normal, vec_t *dist );
 
-#define BOX_ON_PLANE_SIDE(emins, emaxs, p)	\
-	(((p)->type < 3)?						\
-	(										\
-		((p)->dist <= (emins)[(p)->type])?	\
-			1								\
-		:									\
-		(									\
-			((p)->dist >= (emaxs)[(p)->type])?\
-				2							\
-			:								\
-				3							\
-		)									\
-	)										\
-	:										\
-		BoxOnPlaneSide( (emins), (emaxs), (p)))
+#define BOX_ON_PLANE_SIDE(emins, emaxs, p)  \
+    (((p)->type < 3)?                       \
+    (                                       \
+        ((p)->dist <= (emins)[(p)->type])?  \
+            1                               \
+        :                                   \
+        (                                   \
+            ((p)->dist >= (emaxs)[(p)->type])?\
+                2                           \
+            :                               \
+                3                           \
+        )                                   \
+    )                                       \
+    :                                       \
+        BoxOnPlaneSide( (emins), (emaxs), (p)))
 
 void ProjectPointOntoPlane( vec3_t dst, const vec3_t p, const vec3_t normal );
 void PerpendicularVector( vec3_t dst, const vec3_t src );
@@ -336,19 +336,19 @@ vec_t NormalPDF( vec_t x );
 static inline long _fast_ftol( double x )
 {
 #ifdef ENDIAN_LITTLE
-	x = x + _double2fixmagic;
-	return ((long*)&x)[0] >> _shiftamt;
+    x = x + _double2fixmagic;
+    return ((long*)&x)[0] >> _shiftamt;
 #elif defined ( ENDIAN_BIG )
-	x = x + _double2fixmagic;
-	return ((long*)&x)[1] >> _shiftamt;
+    x = x + _double2fixmagic;
+    return ((long*)&x)[1] >> _shiftamt;
 #else
-	return (long)x;
+    return (long)x;
 #endif
 }
 
 static inline long fast_ftol( float x )
 {
-	return _fast_ftol( (double)x );
+    return _fast_ftol( (double)x );
 }
 
 #ifdef __cplusplus

@@ -70,12 +70,13 @@ extern vec3_t item_box_maxs;
 #define DEFAULT_PLAYERSPEED_INSTAGIB 320.0f
 #define DEFAULT_PLAYERSPEED_RACE 320.0f
 #define DEFAULT_JUMPSPEED 280.0f
-#define DEFAULT_DASHSPEED 2075.0f
+#define DEFAULT_DASHSPEED 475.0f
+#define DEFAULT_SDASHSPEED 1470.0f
 #define PROJECTILE_PRESTEP 100
 #define ELECTROBOLT_RANGE 9001
 
 #define MIN_FOV             60
-#define MAX_FOV             160
+#define MAX_FOV             140
 #define DEFAULT_FOV         100
 
 #define MIN_ZOOMFOV         3
@@ -663,6 +664,7 @@ const char *GS_MatchMessageString( matchmessage_t mm );
 #define PMFEAT_ITEMPICK         ( 1<<10 )
 #define PMFEAT_GUNBLADEAUTOATTACK ( 1<<11 )
 #define PMFEAT_WEAPONSWITCH     ( 1<<12 )
+#define PMFEAT_SDASH            ( 1<<13 )
 
 #define PMFEAT_ALL              ( 0xFFFF )
 #define PMFEAT_DEFAULT          ( PMFEAT_ALL & ~PMFEAT_GHOSTMOVE )

@@ -26,104 +26,104 @@ static angelwrap_api_t angelExport;
 
 struct angelwrap_api_s *QAS_GetAngelExport( void )
 {
-	return &angelExport;
+    return &angelExport;
 }
 
 void QAS_InitAngelExport( void )
 {
-	memset( &angelExport, 0, sizeof( angelExport ) );
+    memset( &angelExport, 0, sizeof( angelExport ) );
 
-	angelExport.angelwrap_api_version = ANGELWRAP_API_VERSION;
+    angelExport.angelwrap_api_version = ANGELWRAP_API_VERSION;
 
-	angelExport.asCreateEngine = qasCreateEngine;
-	angelExport.asReleaseEngine = qasReleaseEngine;
+    angelExport.asCreateEngine = qasCreateEngine;
+    angelExport.asReleaseEngine = qasReleaseEngine;
 
-	angelExport.asAcquireContext = qasAcquireContext;
-	angelExport.asReleaseContext = qasReleaseContext;
-	angelExport.asGetActiveContext = qasGetActiveContext;
+    angelExport.asAcquireContext = qasAcquireContext;
+    angelExport.asReleaseContext = qasReleaseContext;
+    angelExport.asGetActiveContext = qasGetActiveContext;
 
-	angelExport.asStringFactoryBuffer = qasStringFactoryBuffer;
-	angelExport.asStringRelease = qasStringRelease;
-	angelExport.asStringAssignString = qasStringAssignString;
+    angelExport.asStringFactoryBuffer = qasStringFactoryBuffer;
+    angelExport.asStringRelease = qasStringRelease;
+    angelExport.asStringAssignString = qasStringAssignString;
 
-	angelExport.asCreateArrayCpp = qasCreateArrayCpp;
-	angelExport.asReleaseArrayCpp = qasReleaseArrayCpp;
+    angelExport.asCreateArrayCpp = qasCreateArrayCpp;
+    angelExport.asReleaseArrayCpp = qasReleaseArrayCpp;
 
-	angelExport.asCreateDictionaryCpp = qasCreateDictionaryCpp;
-	angelExport.asReleaseDictionaryCpp = qasReleaseDictionaryCpp;
+    angelExport.asCreateDictionaryCpp = qasCreateDictionaryCpp;
+    angelExport.asReleaseDictionaryCpp = qasReleaseDictionaryCpp;
 
-	angelExport.asCreateAnyCpp = qasCreateAnyCpp;
-	angelExport.asReleaseAnyCpp = qasReleaseAnyCpp;
+    angelExport.asCreateAnyCpp = qasCreateAnyCpp;
+    angelExport.asReleaseAnyCpp = qasReleaseAnyCpp;
 }
 
 int QAS_API( void )
 {
-	return ANGELWRAP_API_VERSION;
+    return ANGELWRAP_API_VERSION;
 }
 
 int QAS_Init( void )
 {
-	angelwrappool = QAS_MemAllocPool( "Angelwrap script module" );
-	QAS_Printf( "Initializing Angel Script\n" );
+    angelwrappool = QAS_MemAllocPool( "Angelwrap script module" );
+    QAS_Printf( "Initializing Angel Script\n" );
 
-	srand( time( NULL ) );
+    srand( time( NULL ) );
 
-	QAS_InitAngelExport();
-	return 1;
+    QAS_InitAngelExport();
+    return 1;
 }
 
 void QAS_ShutDown( void )
 {
-	QAS_MemFreePool( &angelwrappool );
+    QAS_MemFreePool( &angelwrappool );
 }
 
 void QAS_Error( const char *format, ... )
 {
-	va_list	argptr;
-	char msg[1024];
+    va_list argptr;
+    char msg[1024];
 
-	va_start( argptr, format );
-	Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
-	va_end( argptr );
+    va_start( argptr, format );
+    Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
+    va_end( argptr );
 
-	trap_Error( msg );
+    trap_Error( msg );
 }
 
 void QAS_Printf( const char *format, ... )
 {
-	va_list	argptr;
-	char msg[1024];
+    va_list argptr;
+    char msg[1024];
 
-	va_start( argptr, format );
-	Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
-	va_end( argptr );
+    va_start( argptr, format );
+    Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
+    va_end( argptr );
 
-	trap_Print( msg );
+    trap_Print( msg );
 }
 
 #ifndef ANGELWRAP_HARD_LINKED
 // this is only here so the functions in q_shared.c and q_math.c can link
 void Sys_Error( const char *format, ... )
 {
-	va_list	argptr;
-	char msg[3072];
+    va_list argptr;
+    char msg[3072];
 
-	va_start( argptr, format );
-	Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
-	va_end( argptr );
+    va_start( argptr, format );
+    Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
+    va_end( argptr );
 
-	trap_Error( msg );
+    trap_Error( msg );
 }
 
 void Com_Printf( const char *format, ... )
 {
-	va_list	argptr;
-	char msg[3072];
+    va_list argptr;
+    char msg[3072];
 
-	va_start( argptr, format );
-	Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
-	va_end( argptr );
+    va_start( argptr, format );
+    Q_vsnprintfz( msg, sizeof( msg ), format, argptr );
+    va_end( argptr );
 
-	trap_Print( msg );
+    trap_Print( msg );
 }
 #endif

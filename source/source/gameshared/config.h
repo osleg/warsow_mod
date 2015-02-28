@@ -6,9 +6,9 @@
 #define PUBLIC_BUILD
 
 //==============================================
-// wsw : jal :	these defines affect every project file. They are
-//				work-in-progress stuff which is, sooner or later,
-//				going to be removed by keeping or discarding it.
+// wsw : jal :  these defines affect every project file. They are
+//              work-in-progress stuff which is, sooner or later,
+//              going to be removed by keeping or discarding it.
 //==============================================
 
 // pretty solid
@@ -64,4 +64,4 @@
 
 // symbol address retrieval
 //==============================================
-// #define SYS_SYMBOL		// adds "sys_symbol" command and symbol exports to binary release
+// #define SYS_SYMBOL       // adds "sys_symbol" command and symbol exports to binary release

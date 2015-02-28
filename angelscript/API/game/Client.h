@@ -60,6 +60,7 @@ public:
     void set_pmoveMaxSpeed( float speed );
     void set_pmoveJumpSpeed( float speed );
     void set_pmoveDashSpeed( float speed );
+    void set_pmoveDashType( int value );
     uint get_pmoveFeatures() const;
     float get_pmoveMaxSpeed() const;
     float get_pmoveJumpSpeed() const;

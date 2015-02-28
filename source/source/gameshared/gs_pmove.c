@@ -43,6 +43,7 @@ int playerbox_gib_viewheight = 8;
 #define SPEEDKEY    500
 
 #define PM_DASHJUMP_TIMEDELAY 1000 // delay in milliseconds
+#define PM_SDASH_TIMEDELAY 2500
 #define PM_WALLJUMP_TIMEDELAY   1300
 #define PM_WALLJUMP_FAILED_TIMEDELAY    700
 #define PM_SPECIAL_CROUCH_INHIBIT 400
@@ -80,6 +81,8 @@ typedef struct
     float maxCrouchedSpeed;
     float jumpPlayerSpeed;
     float dashPlayerSpeed;
+
+    int dashPlayerType
 } pml_t;
 
 pmove_t *pm;
@@ -1077,60 +1080,89 @@ static void PM_CheckJump( void )
 */
 static void PM_CheckDash( void )
 {
-    float actual_velocity;  // Current speed
-    float upspeed;  // ?
-    vec3_t dashdir; // Direction for dash
+    float actual_velocity;
+    float upspeed;
+    vec3_t dashdir;
 
     if ( !( pm->cmd.buttons & BUTTON_SPECIAL ) )
         pm->playerState->pmove.pm_flags &= ~PMF_SPECIAL_HELD;
 
-    if ( pm->playerState->pmove.pm_type != PM_NORMAL ) // Player can't control movement
+    if ( pm->playerState->pmove.pm_type != PM_NORMAL )
         return;
 
-    if ( pm->playerState->pmove.stats[PM_STAT_DASHTIME] > 0 ) // Player just dashed, on cooldown
+    if ( pm->playerState->pmove.stats[PM_STAT_DASHTIME] > 0 )
         return;
 
     if ( pm->playerState->pmove.stats[PM_STAT_KNOCKBACK] > 0 ) // can not start a new dash during knockback time
         return;
 
-    if ( ( pm->cmd.buttons & BUTTON_SPECIAL ) && pm->groundentity != -1
-            && ( pm->playerState->pmove.stats[PM_STAT_FEATURES] & PMFEAT_DASH ) ) // Player +special and player can dash
+
+    if ( ( pm->cmd.buttons & BUTTON_SPECIAL ) && pm->groundentity != -1)
     {
-        if ( pm->playerState->pmove.pm_flags & PMF_SPECIAL_HELD ) // what?
+        if ( pm->playerState->pmove.pm_flags & PMF_SPECIAL_HELD )
             return;
 
-        pm->playerState->pmove.pm_flags &= ~PMF_JUMPPAD_TIME; // Disable invularability from jumppad
-        PM_ClearWallJump(); // make WJ available again
-
-        pm->playerState->pmove.pm_flags |= PMF_DASHING; // Set dashing
-        pm->playerState->pmove.pm_flags |= PMF_SPECIAL_HELD; // Set +special
+        pm->playerState->pmove.pm_flags &= ~PMF_JUMPPAD_TIME;
+        PM_ClearWallJump();
+        pm->playerState->pmove.pm_flags |= PMF_SPECIAL_HELD;
         pm->groundentity = -1;
 
-        if ( pml.velocity[2] <= 0.0f ) // If player doesn't move in any direction
-            upspeed = pm_dashupspeed;
-        else
-            upspeed = pm_dashupspeed + pml.velocity[2];
+        if ( pm->playerState->pmove.stats[PM_STAT_FEATURES] & PMFEAT_DASH ) // regular dash
+        {
 
-        // ch : we should do explicit forwardPush here, and ignore sidePush ?
-        VectorMA( vec3_origin, pml.forwardPush, pml.forward, dashdir );
-        VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
-        /*dashdir[2] = 0.0;*/
+            pm->playerState->pmove.pm_flags |= PMF_DASHING;
 
-        if ( VectorLength( dashdir ) < 0.01f ) // if not moving, dash like a "forward dash"
-            VectorCopy( pml.flatforward, dashdir );
+            if ( pml.velocity[2] <= 0.0f )
+                upspeed = pm_dashupspeed;
+            else
+                upspeed = pm_dashupspeed + pml.velocity[2];
 
-        VectorNormalizeFast( dashdir );
+            // ch : we should do explicit forwardPush here, and ignore sidePush ?
+            VectorMA( vec3_origin, pml.forwardPush, pml.flatforward, dashdir );
+            VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
 
-        actual_velocity = VectorNormalize( pml.velocity ); // Osleg: Instead of VectorNormalize2D
-        if ( actual_velocity <= pml.dashPlayerSpeed )
-            VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
-        else
-            VectorScale( dashdir, actual_velocity, dashdir );
+            dashdir[2] = 0.0;
 
-        VectorCopy( dashdir, pml.velocity );
-        pml.velocity[2] = upspeed;
+            if ( VectorLength( dashdir ) < 0.01f ) // if direction is not given, dash like a "forward dash"
+                VectorCopy( pml.flatforward, dashdir );
 
-        pm->playerState->pmove.stats[PM_STAT_DASHTIME] = PM_DASHJUMP_TIMEDELAY;
+            VectorNormalizeFast( dashdir );
+
+            actual_velocity = VectorNormalize( pml.velocity );
+            if ( actual_velocity <= pml.dashPlayerSpeed )
+                VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
+            else
+                VectorScale( dashdir, actual_velocity, dashdir );
+
+            VectorCopy( dashdir, pml.velocity );
+            pml.velocity[2] = upspeed;
+
+            pm->playerState->pmove.stats[PM_STAT_DASHTIME] = PM_DASHJUMP_TIMEDELAY;
+        }
+        else if ( pm->playerState->pmove.stats[PM_STAT_FEATURES] & PMFEAT_SDASH)
+        {
+            pm->playerState->pmove.pm_flags |= PMF_SDASHING;
+            //
+            // ch : we should do explicit forwardPush here, and ignore sidePush ?
+            VectorMA( vec3_origin, pml.forwardPush, pml.forward, dashdir );
+            VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
+            VectorMA( dashdir, pml.upPush, pml.up, dashdir );
+
+            if ( VectorLength( dashdir ) < 0.01f ) // if direction is not given, dash like a "forward dash"
+                VectorCopy( pml.forward, dashdir );
+
+            VectorNormalizeFast( dashdir );
+
+            actual_velocity = VectorNormalize( pml.velocity );
+            if ( actual_velocity <= pml.dashPlayerSpeed )
+                VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
+            else
+                VectorScale( dashdir, actual_velocity, dashdir );
+
+            VectorCopy( dashdir, pml.velocity );
+
+            pm->playerState->pmove.stats[PM_STAT_DASHTIME] = PM_DASHJUMP_TIMEDELAY;
+        }
 
         // return sound events
         if ( abs( pml.sidePush ) > 10 && abs( pml.sidePush ) >= abs( pml.forwardPush ) )
@@ -1223,7 +1255,7 @@ static void PM_CheckWallJump( void )
                 float oldupvelocity = pml.velocity[2];
                 pml.velocity[2] = 0.0;
 
-                hspeed = VectorNormalize( pml.velocity ); // Osleg: instead of VectorNormalize2D
+                hspeed = VectorNormalize2D( pml.velocity );
 
                 // if stunned almost do nothing
                 if ( pm->playerState->pmove.stats[PM_STAT_STUN] > 0 )
