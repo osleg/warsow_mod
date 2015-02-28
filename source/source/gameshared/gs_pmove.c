@@ -81,6 +81,7 @@ typedef struct
     float maxCrouchedSpeed;
     float jumpPlayerSpeed;
     float dashPlayerSpeed;
+    float sdashPlayerSpeed;
 
     int dashPlayerType
 } pml_t;
@@ -1112,7 +1113,7 @@ static void PM_CheckDash( void )
 
             pm->playerState->pmove.pm_flags |= PMF_DASHING;
 
-            if ( pml.velocity[2] <= 0.0f )
+            if ( pml.velocity[2] <= 0.0f ) // Osleg: why
                 upspeed = pm_dashupspeed;
             else
                 upspeed = pm_dashupspeed + pml.velocity[2];
@@ -1142,8 +1143,9 @@ static void PM_CheckDash( void )
         {
             pm->playerState->pmove.pm_flags |= PMF_SDASHING;
 
+
             VectorMA( vec3_origin, pml.forwardPush, pml.forward, dashdir );
-            VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
+            VectorMA( dashdir, pml.sidePush, pml.right, dashdir ); // Osleg: do we need it?
             VectorMA( dashdir, pml.upPush, pml.up, dashdir );
 
             if ( VectorLength( dashdir ) < 0.01f ) // if direction is not given, dash like a "forward dash"
@@ -1811,6 +1813,10 @@ void Pmove( pmove_t *pmove )
     pml.dashPlayerSpeed = pm->playerState->pmove.stats[PM_STAT_DASHSPEED];
     if ( pml.dashPlayerSpeed < 0 )
         pml.dashPlayerSpeed = DEFAULT_DASHSPEED;
+
+    pml.sdashPlayerSpeed = pm->playerState->pmove.stats[PM_STAT_SDASHSPEED];
+    if ( pml.sdashPlayerSpeed < 0 )
+        pml.dashPlayerSpeed = DEFAULT_SDASHSPEED;
 
     pml.maxWalkSpeed = DEFAULT_WALKSPEED;
     if ( pml.maxWalkSpeed > pml.maxPlayerSpeed * 0.66f )
