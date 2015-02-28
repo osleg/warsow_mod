@@ -1128,7 +1128,7 @@ static void PM_CheckDash( void )
 
             VectorNormalizeFast( dashdir );
 
-            actual_velocity = VectorNormalize( pml.velocity );
+            actual_velocity = VectorNormalize2D( pml.velocity );
             if ( actual_velocity <= pml.dashPlayerSpeed )
                 VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
             else
@@ -1154,8 +1154,8 @@ static void PM_CheckDash( void )
             VectorNormalizeFast( dashdir );
 
             actual_velocity = VectorNormalize( pml.velocity );
-            if ( actual_velocity <= pml.dashPlayerSpeed )
-                VectorScale( dashdir, pml.dashPlayerSpeed, dashdir );
+            if ( actual_velocity <= pml.sdashPlayerSpeed )
+                VectorScale( dashdir, pml.sdashPlayerSpeed, dashdir );
             else
                 VectorScale( dashdir, actual_velocity, dashdir );
 
