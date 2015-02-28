@@ -169,7 +169,7 @@ typedef enum
     PMFEAT_ITEMPICK = 0x400,
     PMFEAT_GUNBLADEAUTOATTACK = 0x800,
     PMFEAT_WEAPONSWITCH = 0x1000,
-    PMFEAR_SDASH = 0x2000,
+    PMFEAT_SDASH = 0x2000,
     PMFEAT_ALL = 0xffff,
     PMFEAT_DEFAULT = 0xfeff,
 } pmovefeats_e;
