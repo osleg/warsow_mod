@@ -1120,7 +1120,6 @@ static void PM_CheckDash( void )
             // ch : we should do explicit forwardPush here, and ignore sidePush ?
             VectorMA( vec3_origin, pml.forwardPush, pml.flatforward, dashdir );
             VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
-
             dashdir[2] = 0.0;
 
             if ( VectorLength( dashdir ) < 0.01f ) // if direction is not given, dash like a "forward dash"
@@ -1142,8 +1141,7 @@ static void PM_CheckDash( void )
         else if ( pm->playerState->pmove.stats[PM_STAT_FEATURES] & PMFEAT_SDASH)
         {
             pm->playerState->pmove.pm_flags |= PMF_SDASHING;
-            //
-            // ch : we should do explicit forwardPush here, and ignore sidePush ?
+
             VectorMA( vec3_origin, pml.forwardPush, pml.forward, dashdir );
             VectorMA( dashdir, pml.sidePush, pml.right, dashdir );
             VectorMA( dashdir, pml.upPush, pml.up, dashdir );

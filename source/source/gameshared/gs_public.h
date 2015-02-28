@@ -521,8 +521,8 @@ typedef struct gitem_s
     int effects;
 
 
-    char *name;      // for printing on pickup
-    char *shortname;       // for printing on messages
+    char *name;             // for printing on pickup
+    char *shortname;        // for printing on messages
     char *color;            // for printing on messages
 
     int quantity;           // how much it gives at picking
@@ -651,23 +651,23 @@ const char *GS_MatchMessageString( matchmessage_t mm );
 //===============================================================
 
 // pmove->pm_features
-#define PMFEAT_CROUCH           ( 1<<0 )
-#define PMFEAT_WALK             ( 1<<1 )
-#define PMFEAT_JUMP             ( 1<<2 )
-#define PMFEAT_DASH             ( 1<<3 )
-#define PMFEAT_WALLJUMP         ( 1<<4 )
-#define PMFEAT_FWDBUNNY         ( 1<<5 )
-#define PMFEAT_AIRCONTROL       ( 1<<6 )
-#define PMFEAT_ZOOM             ( 1<<7 )
-#define PMFEAT_GHOSTMOVE        ( 1<<8 )
-#define PMFEAT_CONTINOUSJUMP    ( 1<<9 )
-#define PMFEAT_ITEMPICK         ( 1<<10 )
-#define PMFEAT_GUNBLADEAUTOATTACK ( 1<<11 )
-#define PMFEAT_WEAPONSWITCH     ( 1<<12 )
-#define PMFEAT_SDASH            ( 1<<13 )
+#define PMFEAT_CROUCH               ( 1<<0 )
+#define PMFEAT_WALK                 ( 1<<1 )
+#define PMFEAT_JUMP                 ( 1<<2 )
+#define PMFEAT_DASH                 ( 1<<3 )
+#define PMFEAT_WALLJUMP             ( 1<<4 )
+#define PMFEAT_FWDBUNNY             ( 1<<5 )
+#define PMFEAT_AIRCONTROL           ( 1<<6 )
+#define PMFEAT_ZOOM                 ( 1<<7 )
+#define PMFEAT_GHOSTMOVE            ( 1<<8 )
+#define PMFEAT_CONTINOUSJUMP        ( 1<<9 )
+#define PMFEAT_ITEMPICK             ( 1<<10 )
+#define PMFEAT_GUNBLADEAUTOATTACK   ( 1<<11 )
+#define PMFEAT_WEAPONSWITCH         ( 1<<12 )
+#define PMFEAT_SDASH                ( 1<<13 )
 
-#define PMFEAT_ALL              ( 0xFFFF )
-#define PMFEAT_DEFAULT          ( PMFEAT_ALL & ~PMFEAT_GHOSTMOVE )
+#define PMFEAT_ALL                  ( 0xFFFF )
+#define PMFEAT_DEFAULT              ( PMFEAT_ALL & ~PMFEAT_GHOSTMOVE )
 
 enum
 {
@@ -1170,3 +1170,5 @@ extern firedef_t ammoFireDefs[];
 #endif
 
 #endif // __GS_PUBLIC_H
+
+/* vim: set ts=4 sw=4 tw=0 et :*/
